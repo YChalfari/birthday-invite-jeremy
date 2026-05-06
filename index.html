@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>יום הולדת 5 - הזמנה</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <main class="invite-shell">
+      <section class="card">
+        <header class="hero">
+          <img
+            id="birthdayPhoto"
+            class="hero-photo"
+            src="./jeremy.png"
+            alt="תמונה של ילד יום ההולדת"
+          />
+          <div class="hero-text">
+            <p class="tag">הנכם מוזמנים ליום ההולדת של ירמי!</p>
+            <h1>ירמי חוגג 5 וכולם מוזמנים</h1>
+            <p class="subtitle">נשמח לראותכם - יהיה שמחחחחחחחח</p>
+          </div>
+        </header>
+
+        <section class="details-grid">
+          <article class="info-box">
+            <h2>מתי?</h2>
+            <p id="eventDate">יום רביעי, 27 במאי 2026</p>
+            <p id="eventTime">17:00 - 19:00</p>
+          </article>
+          <article class="info-box">
+            <h2>איפה?</h2>
+            <p id="eventPlace">אולם הספורט רננים, קריית ראשון</p>
+            <p id="eventAddress">רחוב הגומא 5, ראשון לציון</p>
+            <div class="button-row">
+              <a id="wazeLink" class="btn secondary" href="#" target="_blank" rel="noreferrer">נווט ב-Waze</a>
+              <a id="mapsLink" class="btn secondary" href="#" target="_blank" rel="noreferrer">נווט ב-Google Maps</a>
+            </div>
+          </article>
+        </section>
+
+        <section class="actions-grid">
+          <a id="calendarLink" class="btn" href="#" target="_blank" rel="noreferrer">הוספה ליומן</a>
+          <a id="whatsappShareLink" class="btn whatsapp" href="#" target="_blank" rel="noreferrer">שיתוף ב-WhatsApp</a>
+        </section>
+
+        <section class="rsvp-section">
+          <h2>אישור הגעה</h2>
+          <form id="rsvpForm">
+            <div class="form-grid">
+              <label>
+                שם המוזמן
+                <input id="familyName" name="familyName" type="text" required />
+              </label>
+              <label>
+                מספר ילדים
+                <input id="kidsCount" name="kidsCount" type="number" min="0" value="1" required />
+              </label>
+            </div>
+            <button class="btn submit" type="submit">אישור הגעה</button>
+            <p id="rsvpMessage" class="form-message" aria-live="polite"></p>
+          </form>
+        </section>
+      </section>
+    </main>
+
+    <script src="./script.js"></script>
+  </body>
+</html>
