@@ -4,10 +4,25 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>יום הולדת 5 - הזמנה</title>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="ירמי חוגג 5 וכולם מוזמנים" />
+    <meta property="og:description" content="כל הפרטים ואישור הגעה להזמנת יום ההולדת של ירמי." />
+    <meta property="og:url" content="https://birthday-invite-jeremy.pages.dev/" />
+    <meta property="og:image" content="https://birthday-invite-jeremy.pages.dev/preview-invite.jpg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="ירמי חוגג 5 וכולם מוזמנים" />
+    <meta name="twitter:description" content="כל הפרטים ואישור הגעה להזמנת יום ההולדת של ירמי." />
+    <meta name="twitter:image" content="https://birthday-invite-jeremy.pages.dev/preview-invite.jpg" />
     <link rel="stylesheet" href="./styles.css" />
   </head>
   <body>
-    <main class="invite-shell">
+    <section id="inviteGate" class="invite-gate">
+      <img id="openInviteImage" class="invite-gate-image invite-gate-image-clickable" src="./preview-invite.jpg" alt="תמונת הזמנה" onclick="window.openInviteFromGate && window.openInviteFromGate()" />
+    </section>
+
+    <main id="inviteContent" class="invite-shell is-hidden">
       <section class="card">
         <header class="hero">
           <img

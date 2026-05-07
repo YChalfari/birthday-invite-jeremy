@@ -10,19 +10,27 @@ const CONFIG = {
 };
 
 function fillStaticData() {
-  document.getElementById("childName").textContent = CONFIG.childName;
-  document.getElementById("eventDate").textContent = CONFIG.dateLabel;
-  document.getElementById("eventTime").textContent = CONFIG.timeLabel;
-  document.getElementById("eventPlace").textContent = CONFIG.venueName;
-  document.getElementById("eventAddress").textContent = CONFIG.venueAddress;
+  const childNameEl = document.getElementById("childName");
+  const eventDateEl = document.getElementById("eventDate");
+  const eventTimeEl = document.getElementById("eventTime");
+  const eventPlaceEl = document.getElementById("eventPlace");
+  const eventAddressEl = document.getElementById("eventAddress");
+
+  if (childNameEl) childNameEl.textContent = CONFIG.childName;
+  if (eventDateEl) eventDateEl.textContent = CONFIG.dateLabel;
+  if (eventTimeEl) eventTimeEl.textContent = CONFIG.timeLabel;
+  if (eventPlaceEl) eventPlaceEl.textContent = CONFIG.venueName;
+  if (eventAddressEl) eventAddressEl.textContent = CONFIG.venueAddress;
 }
 
 function buildLinks() {
   const encodedMap = encodeURIComponent(CONFIG.mapQuery);
   const mapsUrl = `https://www.google.com/maps/search/?api=1&query=${encodedMap}`;
   const wazeUrl = `https://waze.com/ul?q=${encodedMap}&navigate=yes`;
-  document.getElementById("mapsLink").href = mapsUrl;
-  document.getElementById("wazeLink").href = wazeUrl;
+  const mapsLinkEl = document.getElementById("mapsLink");
+  const wazeLinkEl = document.getElementById("wazeLink");
+  if (mapsLinkEl) mapsLinkEl.href = mapsUrl;
+  if (wazeLinkEl) wazeLinkEl.href = wazeUrl;
 
   const calendarTitle = encodeURIComponent(`יום הולדת 5 ל${CONFIG.childName}`);
   const calendarDetails = encodeURIComponent(
@@ -30,14 +38,16 @@ function buildLinks() {
   );
   const calendarLocation = encodeURIComponent(`${CONFIG.venueName}, ${CONFIG.venueAddress}`);
   const calendarDates = "20260527T170000/20260527T190000";
-  document.getElementById(
-    "calendarLink"
-  ).href = `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${calendarTitle}&dates=${calendarDates}&details=${calendarDetails}&location=${calendarLocation}`;
+  const calendarLinkEl = document.getElementById("calendarLink");
+  if (calendarLinkEl) {
+    calendarLinkEl.href = `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${calendarTitle}&dates=${calendarDates}&details=${calendarDetails}&location=${calendarLocation}`;
+  }
 
   const shareText = encodeURIComponent(
     `הזמנה ליום הולדת 5 של ${CONFIG.childName}! כל הפרטים וה-RSVP כאן: ${CONFIG.siteUrl}`
   );
-  document.getElementById("whatsappShareLink").href = `https://wa.me/?text=${shareText}`;
+  const whatsappShareLinkEl = document.getElementById("whatsappShareLink");
+  if (whatsappShareLinkEl) whatsappShareLinkEl.href = `https://wa.me/?text=${shareText}`;
 }
 
 async function submitRsvp(event) {
@@ -103,7 +113,38 @@ function setupConfetti() {
   }, 1800);
 }
 
-document.getElementById("rsvpForm").addEventListener("submit", submitRsvp);
+function setupInviteGate() {
+  const gate = document.getElementById("inviteGate");
+  const content = document.getElementById("inviteContent");
+  const openImage = document.getElementById("openInviteImage");
+  const body = document.body;
+  if (!gate || !content || !openImage || !body) {
+    return;
+  }
+
+  body.classList.add("gate-open");
+
+  window.openInviteFromGate = () => {
+    if (gate.classList.contains("is-opening")) {
+      return;
+    }
+
+    content.classList.remove("is-hidden");
+    gate.classList.add("is-opening");
+    setTimeout(() => {
+      gate.classList.add("is-hidden");
+      body.classList.remove("gate-open");
+    }, 1000);
+  };
+
+  openImage.addEventListener("click", window.openInviteFromGate);
+}
+
+const rsvpForm = document.getElementById("rsvpForm");
+if (rsvpForm) {
+  rsvpForm.addEventListener("submit", submitRsvp);
+}
 fillStaticData();
 buildLinks();
 setupConfetti();
+setupInviteGate();
