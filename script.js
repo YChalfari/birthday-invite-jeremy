@@ -5,7 +5,7 @@ const CONFIG = {
   venueName: "אולם הספורט רננים, קריית ראשון",
   venueAddress: "רחוב הגומא 5, ראשון לציון",
   mapQuery: "רח הגומא 5 ראשון לציון",
-  siteUrl: "https://birthday-invite-jeremy.pages.dev",
+  siteUrl: "https://birthday-invite-jeremy.chalfari.workers.dev/",
   rsvpEndpoint: "https://script.google.com/macros/s/AKfycbzjZp3u_IgQ1eWwdeB_fLuJk1fyvW_17zp4Kga_NnKx9GH_exkMfEhYgSgeNI8JrV_R/exec",
 };
 
